@@ -3,6 +3,7 @@
 rightKey = keyboard_check(ord("D"));
 leftKey = keyboard_check(ord("A"));
 jumpKeyPressed = keyboard_check_pressed(vk_space);
+jumpKeyHold = keyboard_check(vk_space);
 
 //xspeed and yspeed
 hspeed_ = (rightKey - leftKey) * movespd;
@@ -11,9 +12,40 @@ hspeed_ = (rightKey - leftKey) * movespd;
 vspeed_ += grav;
 
 //jump
-if jumpKeyPressed && place_meeting(x, y+1, FloorTest){
- vspeed_ = jumpspeed;
-};
+
+if place_meeting(x, y+1, FloorTest){
+	jumpcount = 0;
+}
+
+else {
+	if jumpcount == 0 {
+		jumpcount = 1;
+	}
+}
+	
+//initiate the jump
+if jumpKeyPressed && jumpcount < jumpMax{
+
+	jumpcount++;
+	
+	//set the jump timer
+	jumptimer = jumpholdframes;
+}
+
+//end the jump early by stopping the timer if the jump button is not being held
+if !jumpKeyHold{jumptimer = 0;};
+
+//jump speed based on the timer
+if jumptimer > 0{
+
+	//constantly set the yspeed to be the jump speed
+	vspeed_ = jumpspeed;
+	
+	//count down the timer
+	jumptimer--;
+}
+
+
 
 //collision
 	//x collision
