@@ -28,12 +28,12 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"Floor",
-    "path":"sprites/Floor/Floor.yy",
+    "name":"sprFloor",
+    "path":"sprites/sprFloor/sprFloor.yy",
   },
   "spriteMaskId":{
-    "name":"Floor",
-    "path":"sprites/Floor/Floor.yy",
+    "name":"sprFloor",
+    "path":"sprites/sprFloor/sprFloor.yy",
   },
   "visible":true,
 }

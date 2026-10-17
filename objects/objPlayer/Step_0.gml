@@ -11,6 +11,7 @@ hspeed_ = (rightKey - leftKey) * movespd;
 //apply gravity to vspeed
 vspeed_ += grav;
 
+
 //jump
 
 if place_meeting(x, y+1, FloorTest){
@@ -64,7 +65,7 @@ if jumptimer > 0{
 
 // y collision
 if place_meeting(x + hspeed_, y + vspeed_, FloorTest){
-	//move player as close to the wall as possible
+	//move player as close to the floor as possible
 	var _pixelcheck = sign(vspeed_);
 	
 	while !place_meeting(x + hspeed_, y + _pixelcheck, FloorTest){
@@ -75,7 +76,12 @@ if place_meeting(x + hspeed_, y + vspeed_, FloorTest){
 	vspeed_ = 0;
 };
 
+
+
 //move the player
 x += hspeed_;
 y += vspeed_;
 
+//platform jump through - test
+
+	
