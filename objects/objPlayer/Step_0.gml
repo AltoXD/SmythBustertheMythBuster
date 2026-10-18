@@ -5,6 +5,10 @@ leftKey = keyboard_check(ord("A"));
 jumpKeyPressed = keyboard_check_pressed(vk_space);
 jumpKeyHold = keyboard_check(vk_space);
 
+if jumpcount > 0 {
+	jump = true
+} else jump = false
+
 //xspeed and yspeed
 hspeed_ = (rightKey - leftKey) * movespd;
 
@@ -77,11 +81,32 @@ if place_meeting(x + hspeed_, y + vspeed_, FloorTest){
 };
 
 
-
 //move the player
 x += hspeed_;
 y += vspeed_;
 
 //platform jump through - test
 
+if place_meeting(x, y, objEnemyTest) {
+	global.playerhealth -= 2
+}
+
+if jump = true {
+	if place_meeting(x, y, objPlatform) {
+		
+	var _pixelcheck = sign(hspeed_);
 	
+	if !place_meeting(x + hspeed_, y, objPlatform) && !bbox_bottom > objPlatform.bbox_top{
+		x += _pixelcheck
+	}
+	
+	var _Pixelcheck = sign(vspeed_)
+	
+	if !place_meeting(x, y + vspeed_, objPlatform) && !bbox_bottom > objPlatform.bbox_top{
+		y += _Pixelcheck
+	}
+	vspeed_ = 0;
+	grav = 0
+}
+else grav = 0.25
+}

@@ -1,0 +1,1 @@
+draw_text(63, 66, "Health - " + string(global.playerhealth))

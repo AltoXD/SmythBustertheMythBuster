@@ -12,3 +12,10 @@ jumpcount = 0;
 
 jumpholdframes = 15;
 jumptimer = 0;
+jump = false
+
+//health stats
+global.playerhealth = 200
+global.maxplayerhealth = 200
+
+
