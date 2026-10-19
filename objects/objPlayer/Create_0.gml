@@ -13,6 +13,7 @@ jumpcount = 0;
 jumpholdframes = 15;
 jumptimer = 0;
 jump = false
+platformstay = false
 
 //health stats
 global.playerhealth = 200

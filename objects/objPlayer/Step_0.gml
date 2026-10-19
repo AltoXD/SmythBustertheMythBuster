@@ -91,22 +91,30 @@ if place_meeting(x, y, objEnemyTest) {
 	global.playerhealth -= 2
 }
 
-if jump = true {
-	if place_meeting(x, y, objPlatform) {
-		
-	var _pixelcheck = sign(hspeed_);
+if bbox_bottom > objPlatform.bbox_top {
+	jump = false
+	platformstay = true
 	
-	if !place_meeting(x + hspeed_, y, objPlatform) && !bbox_bottom > objPlatform.bbox_top{
-		x += _pixelcheck
-	}
-	
-	var _Pixelcheck = sign(vspeed_)
-	
-	if !place_meeting(x, y + vspeed_, objPlatform) && !bbox_bottom > objPlatform.bbox_top{
-		y += _Pixelcheck
-	}
-	vspeed_ = 0;
-	grav = 0
 }
-else grav = 0.25
+
+if place_meeting(x, y, objPlatform) {
+	if jump = false {
+		if platformstay = true{
+			var _pixelcheck = sign(vspeed_);
+	
+			if !place_meeting(x, y + _pixelcheck, objPlatform.bbox_top){
+				y += _pixelcheck
+			}
+		
+			if place_meeting(x, y, objPlatform) {
+				if !keyboard_check(vk_space){
+					platformstay = true
+				} 
+				
+			if !keyboard_check(vk_space){
+				y = objPlatform.y
+			} else jump = true
+			}
+		}
+	}
 }
