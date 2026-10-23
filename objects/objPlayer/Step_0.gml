@@ -55,8 +55,9 @@ if jumptimer > 0{
 //collision
 	//x collision
 	if place_meeting( x + hspeed_, y, FloorTest){
-		//move player as close to the wall as possible
+		//move player as close to the floor as possible
 		var _pixelcheck = sign(hspeed_);
+		
 		
 		while !place_meeting( x + _pixelcheck, y, FloorTest){
 			x += _pixelcheck;
@@ -80,7 +81,34 @@ if place_meeting(x + hspeed_, y + vspeed_, FloorTest){
 	vspeed_ = 0;
 };
 
+//x collision - wall
+if place_meeting(x + hspeed_, y, objWall){
+	var _pixelcheck = sign(hspeed_);
+	
+	while !place_meeting(x +_pixelcheck, y, objWall){
+		x += _pixelcheck
+	}
+	
+	hspeed_ = 0;
+}
 
+//y collision - wall
+if place_meeting(x + hspeed_, y + vspeed_, objWall){
+	var _pixelcheck = sign(vspeed_);
+	
+	while !place_meeting(x + hspeed_, y + _pixelcheck, objWall){
+		y += _pixelcheck;
+	}
+	
+	//set speed to zero
+	vspeed_ = 0;
+};
+
+if bbox_bottom > objPlatform.bbox_top{
+	if keyboard_check(ord("S")) && keyboard_check_direct(vk_shift){
+		vspeed_ = jumpspeed;
+	}
+}
 //move the player
 x += hspeed_;
 y += vspeed_;
@@ -91,30 +119,3 @@ if place_meeting(x, y, objEnemyTest) {
 	global.playerhealth -= 2
 }
 
-if bbox_bottom > objPlatform.bbox_top {
-	jump = false
-	platformstay = true
-	
-}
-
-if place_meeting(x, y, objPlatform) {
-	if jump = false {
-		if platformstay = true{
-			var _pixelcheck = sign(vspeed_);
-	
-			if !place_meeting(x, y + _pixelcheck, objPlatform.bbox_top){
-				y += _pixelcheck
-			}
-		
-			if place_meeting(x, y, objPlatform) {
-				if !keyboard_check(vk_space){
-					platformstay = true
-				} 
-				
-			if !keyboard_check(vk_space){
-				y = objPlatform.y
-			} else jump = true
-			}
-		}
-	}
-}
