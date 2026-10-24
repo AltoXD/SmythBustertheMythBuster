@@ -15,6 +15,8 @@ jumptimer = 0;
 jump = false
 platformstay = false
 
+downKey = 0;
+
 //health stats
 global.playerhealth = 200
 global.maxplayerhealth = 200

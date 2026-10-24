@@ -4,6 +4,9 @@ rightKey = keyboard_check(ord("D"));
 leftKey = keyboard_check(ord("A"));
 jumpKeyPressed = keyboard_check_pressed(vk_space);
 jumpKeyHold = keyboard_check(vk_space);
+downKey = keyboard_check(ord("S"))
+//&& keyboard_check_direct(vk_shift);
+
 
 if jumpcount > 0 {
 	jump = true
@@ -92,28 +95,23 @@ if place_meeting(x + hspeed_, y, objWall){
 	hspeed_ = 0;
 }
 
-//y collision - wall
+//y collision - wall to link with the platforms for collision
 if place_meeting(x + hspeed_, y + vspeed_, objWall){
 	var _pixelcheck = sign(vspeed_);
-	
+	if jumpKeyPressed = false{
 	while !place_meeting(x + hspeed_, y + _pixelcheck, objWall){
 		y += _pixelcheck;
 	}
 	
 	//set speed to zero
 	vspeed_ = 0;
+	}
 };
 
-if bbox_bottom > objPlatform.bbox_top{
-	if keyboard_check(ord("S")) && keyboard_check_direct(vk_shift){
-		vspeed_ = jumpspeed;
-	}
-}
 //move the player
 x += hspeed_;
 y += vspeed_;
 
-//platform jump through - test
 
 if place_meeting(x, y, objEnemyTest) {
 	global.playerhealth -= 2
