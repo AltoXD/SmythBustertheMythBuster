@@ -21,7 +21,7 @@ vspeed_ += grav;
 
 //jump
 
-if place_meeting(x, y+1, FloorTest){
+if place_meeting(x, y+1, FloorTest) or place_meeting(x, y+1, objPlatform){
 	jumpcount = 0;
 }
 
@@ -92,7 +92,9 @@ if place_meeting(x + hspeed_, y, objWall){
 		x += _pixelcheck
 	}
 	
-	hspeed_ = 0;
+	if !place_meeting(x, y, objPlatform){
+		hspeed_ = 0;
+	}
 }
 
 //y collision - wall to link with the platforms for collision
@@ -105,8 +107,15 @@ if place_meeting(x + hspeed_, y + vspeed_, objWall){
 	
 	//set speed to zero
 	vspeed_ = 0;
+	
 	}
 };
+
+if place_meeting(x, y, objPlatform.bbox_top){
+	if keyboard_check_pressed(vk_space){
+		vspeed_ = jumpspeed;
+	}
+}
 
 //move the player
 x += hspeed_;

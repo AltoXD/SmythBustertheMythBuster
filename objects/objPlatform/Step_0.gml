@@ -1,9 +1,15 @@
 if instance_exists(objPlayer){
-	if  (round((objPlayer.bbox_bottom) > y)){
+	
+	if  (round((objPlayer.bbox_top) > y)){
+		falling = false
+	}
+	
+	if  (round((objPlayer.bbox_bottom) > y)) && falling = false{
 		mask_index = sprPlatform;
 	} 
 	
 	if keyboard_check(ord("S")) && (round((objPlayer.bbox_bottom) > y)) {
+	 falling = true
 	 mask_index = -1
 	}
 	
@@ -13,3 +19,5 @@ if instance_exists(objPlayer){
 		}
 	}
 }
+
+show_debug_message(falling)
